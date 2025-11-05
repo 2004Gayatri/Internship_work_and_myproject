@@ -1,0 +1,156 @@
+<div class="modal-dialog"  [ngClass]="{ 'sidebar-wide': !isCollapsed, 'sidebar-narrow': isCollapsed }">
+  <div class="modal-content">
+    <div class="d-flex pt-10 pb-10 pr-10 pl-0">
+      <div class="fs-16">
+        <a routerLink="/home/configrations/user-management" class="your-button-class">User Management</a> | User |
+        <span *ngIf="!showHistoryTable" class="brightBlue">Import</span>
+        <span *ngIf="showHistoryTable"><a routerLink='/import' class="your-button-class">Import</a> |</span
+        ><span *ngIf="showHistoryTable" class="brightBlue"> Import Info</span>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body">
+    <ng-container *ngIf="!showHistoryTable">
+      <ion-row>
+        <ion-col
+          size-sm="6"
+          size-md="6"
+          size-lg="6"
+          size-xs="6"
+          class="rowclass"
+        >
+          <div class="importCardBox">
+            <button class="downloadImportFileBtn font_medium mr-30 mt-10">
+              <img class="mr-10" />Download Import File Template
+            </button>
+
+            <div
+              class="upload-box display-center pt-25 pb-25 mt-20 cp"
+              (click)="browseImage.click()"
+            >
+              <div class="d-flex text-center">
+                <label
+                  class="uploadBtn text_center extention_text font_regular cp"
+                >
+                  <ng-container *ngIf="fileName; else browseContent">
+                    <img
+                      src=".././assets/icon/succesCheckiIcon.svg"
+                      class="img_check"
+                      alt="checked_img"
+                    />
+                    File uploaded successfully!<br /><br />
+                    <div class="filename">{{ fileName }}</div>
+                  </ng-container>
+
+                  <ng-template #browseContent>
+                    Browse and File select<br /><br />OR <br /><br />
+                    <button class="browse-btn font_medium mr-30">Browse</button>
+                  </ng-template>
+                </label>
+                <input
+                  #browseImage
+                  type="file"
+                  (change)="selectFile($event)"
+                  style="display: none"
+                />
+              </div>
+            </div>
+
+            <div>
+              <div class="mb-20">
+                <br />
+                <label class="filecon"
+                  >Please select CSV or Excel File Only</label
+                >
+              </div>
+
+              <ng-container *ngIf="fileName">
+                <div class="buttons-class">
+                  <button
+                    class="cancel-btn font_medium"
+                    (click)="cancelFileUpload()">
+                    Cancel
+                  </button>
+                  <button
+                    class="add-btn font_medium"
+                    (click)="openConfirmationPopup()">
+                           Add
+                  </button>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </ion-col>
+
+        <ion-col size-sm="6" size-md="6" size-lg="6" size-xs="6">
+          <div class="font_regular fs-14 note">
+            <strong>Note:</strong> Please make sure the following mandatory
+            fields are present: <br /><br />
+            <div style="display: flex; gap: 70px">
+              <div>
+                <ul>
+                  <li>Employee Code</li>
+                  <br />
+                  <li>First Name</li>
+                  <br />
+                  <li>Last Name</li>
+                  <br />
+                  <li>Email Id</li>
+                  <br />
+                  <li>Status</li>
+                  <br />
+                  <li>Emp_Department</li>
+                  <br />
+                </ul>
+              </div>
+              <div>
+                <ul>
+                  <li>Date of Joining</li>
+                  <br />
+                  <li>Division Name</li>
+                  <br />
+                  <li>Division Code</li>
+                  <br />
+                  <li>Department Code</li>
+                  <br />
+                  <li>Designation</li>
+                  <br />
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col
+          size-sm="6"
+          size-md="6"
+          size-lg="6"
+          size-xs="6"
+          class="text-right"
+        >
+          <button
+            class="importHistoryBtn font_medium fs-14 mr-30 mt-10"
+            (click)="onClickImportHistory()"
+          >
+            Import History
+          </button>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+
+    <div>
+      <!-- Conditionally show the table when showHistoryTable is true -->
+      <ng-container *ngIf="showHistoryTable">
+        <app-grid-layout 
+      *ngIf="gridData && showListingPage" 
+      [gridData]="gridData"
+      [selectedRange]="selectedSizeToShowData"
+      (addRecordEmmiter)="addRecord()"
+      >
+  </app-grid-layout>
+      </ng-container>
+    </div>
+  </div>
+</div>

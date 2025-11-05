@@ -1,0 +1,76 @@
+
+.container {
+    background: var(--ion-background-color, #F1F5F9);
+    height: 100vh;
+    overflow: scroll;
+     &.sidebar-wide {
+    padding-left: 17%;
+  }
+
+  &.sidebar-narrow {
+    padding-left: 6%;
+  }
+  }
+
+.cardBox{
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 10px;
+}
+
+.cardBox-heading{
+  background-color: #389FE733;
+  color: #1391FF;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 16px;
+}
+
+.cardBox-body{
+  padding: 16px;
+}
+
+.modal-content{
+    background-color: #E6E6E6;
+    padding: 10px 20px;
+    font-family: 'Inter_18pt-SemiBold';
+}
+
+.modal-body{
+    padding: 10px 20px;
+}
+
+.saveBtn, .editBtn {
+    background-color: #389FE7;
+    outline: none;
+    border-radius: 7px;
+    padding: 10px 20px;
+    color: #FFFFFF;
+    height: 40px;
+    font-family: 'Inter_18pt-Bold';
+  }
+
+  .cancleBtn{
+    border:  1px solid #389FE7;
+    color: #389FE7;
+    border-radius: 7px;
+    padding: 10px 20px;
+    background-color: #FFFFFF;
+    height: 40px;
+    font-family: 'Inter_18pt-Bold';
+  }
+
+  .showUserDetail{
+    font-family: 'Inter_18pt-Regular' !important;
+    font-family: 14px;
+  }
+
+  mat-error{
+    color: red;
+    margin-bottom: 10px;
+  }
+
+  ::ng-deep .custom-dialog-container {
+    margin-left: 10% !important;
+  }

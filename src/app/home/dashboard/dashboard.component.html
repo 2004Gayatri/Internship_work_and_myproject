@@ -1,0 +1,154 @@
+<div
+  class="container-fluid"
+  [ngClass]="{ 'sidebar-wide': !isCollapsed, 'sidebar-narrow': isCollapsed }">
+  <ion-row>
+    <ion-col size-lg="4" size-md="2">
+      <ion-row>
+        <ion-col size="12">
+          <div class="big-div">
+            <div class="w-100 div1">
+              <ion-col size-lg="6" size-md="8">
+                <div>
+                  <div>Division</div>
+                  <div><h3 style="color: #389fe7">62</h3></div>
+                </div>
+              </ion-col>
+              <ion-col size-lg="6" size-md="4">
+                <div>
+                  <img
+                    class="small-logo"
+                    src="././assets/icon/Group 94456.svg"
+                    alt="img"
+                  />
+                </div>
+              </ion-col>
+            </div>
+            <div class="w-100 div1">
+              <ion-col size-lg="7" size-md="8">
+                <div>
+                  <div>
+                    Div. Category
+                    <h3 style="color: #d05959">22</h3>
+                  </div>
+                </div>
+              </ion-col>
+              <ion-col size-lg="4" size-md="4">
+                <div>
+                  <img
+                    class="small-logo"
+                    src="././assets/icon/Group 94458.svg"
+                    alt="img"
+                  />
+                </div>
+              </ion-col>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size="12">
+          <div class="big-div">
+            <div class="w-100 div1">
+              <ion-col size-lg="6" size-md="8">
+                <div>
+                  <div>Plant</div>
+                  <div><h3 style="color: #d19928">62</h3></div>
+                </div>
+              </ion-col>
+              <ion-col size-lg="6" size-md="4">
+                <div>
+                  <img
+                    class="small-logo"
+                    src="././assets/icon/Group 94466.svg"
+                    alt="img"
+                  />
+                </div>
+              </ion-col>
+            </div>
+            <div class="w-100 div1">
+              <ion-col size-lg="7" size-md="4">
+                <div>
+                  <div>
+                    Department
+                    <h3 style="color: #34c289">22</h3>
+                  </div>
+                </div>
+              </ion-col>
+              <ion-col size-lg="4" size-md="4">
+                <div>
+                  <img
+                    class="small-logo"
+                    src="././assets/icon/Group 94461.svg"
+                    alt="img"
+                  />
+                </div>
+              </ion-col>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+    <ion-col size-lg="2" size-md="2">
+      <div>Division</div>
+      <mat-form-field class="w-100 hei mat-input-style">
+        <mat-select
+          placeholder="Select"
+          [(ngModel)]="selectedRange"
+          placeholder="Select"
+          (selectionChange)="onSelectCount($event)"
+        >
+          <mat-option [value]="All">All</mat-option>
+          <mat-option [value]="Metal">Metal</mat-option>
+          <mat-option [value]="Rubber">Rubber</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div></div>
+    </ion-col>
+    <ion-col size-lg="2" size-md="2">
+      <div>Division Category</div>
+      <mat-form-field class="w-100 hei mat-input-style">
+        <mat-select
+          placeholder="Select"
+          [(ngModel)]="selectedRange"
+          placeholder="Select"
+          (selectionChange)="onSelectCount($event)"
+        >
+          <mat-option [value]="All">All</mat-option>
+          <mat-option [value]="Metal">Metal</mat-option>
+          <mat-option [value]="Rubber">Rubber</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div></div>
+    </ion-col>
+    <ion-col size-lg="2" size-md="2">
+      <div>Plant</div>
+      <mat-form-field class="w-100 hei mat-input-style">
+        <mat-select
+          placeholder="Select"
+          [(ngModel)]="selectedRange"
+          placeholder="Select"
+          (selectionChange)="onSelectCount($event)"
+        >
+          <mat-option [value]="All">All</mat-option>
+          <mat-option [value]="Metal">Metal</mat-option>
+          <mat-option [value]="Rubber">Rubber</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div></div>
+    </ion-col>
+    <ion-col size-lg="2" size-md="2">
+      <div>Department</div>
+      <mat-form-field class="w-100 hei mat-input-style">
+        <mat-select
+          placeholder="Select"
+          [(ngModel)]="selectedRange"
+          placeholder="Select"
+          (selectionChange)="onSelectCount($event)"
+        >
+          <mat-option [value]="All">All</mat-option>
+          <mat-option [value]="Metal">Metal</mat-option>
+          <mat-option [value]="Rubber">Rubber</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div></div>
+    </ion-col>
+  </ion-row>
+</div>

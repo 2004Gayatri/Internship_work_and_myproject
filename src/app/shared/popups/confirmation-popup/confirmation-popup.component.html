@@ -1,0 +1,30 @@
+<div class="confirmation-body p-20">
+  <div class="row p-0">
+    <div class=" col-12 display-end p-0" *ngIf="showCloseIcon" (click)="btnClick()">
+      <span [mat-dialog-close] (click)="btnClick()" class="material-icons cp">close</span>
+    </div>
+  </div>
+  <div  class="row p-0 mb-10 horizontal-center" *ngIf="showSuccessIcon" >
+    <img class="successIcon" src="././assets/icon/succesCheckiIcon.svg">
+  </div>
+  <div class="row p-0 mb-10 horizontal-center" *ngIf="showConfirmationMessage" >
+      <p class="fs-18 font_bold cl-black text-center">Confirmation!</p>
+    </div>
+  <div class="row p-0 mb-10 horizontal-center" *ngIf="showSuccessMessage" >
+    <p class="fs-18 font_bold cl-black text-center">Successful</p>
+  </div>
+  <div class="row p-0 mb-10 horizontal-center" *ngIf="msgTitle != ''" >
+    <p class="fs-18 font_regular cl-black text-center">{{msgTitle}}</p>
+  </div>
+  <div class="row p-0 display-center" *ngIf="msg != ''" >
+    <p class="fs-16 font_regular cl-black text-center">{{msg}}</p>
+  </div>
+  <div class="row p-0 mt-20">
+    <div class="col-12 horizontal-center">
+      <button *ngIf="button1" class="font_regular btn_one text_gray mr-30" (click)="btn1Action()">{{button1}}</button>
+      <button *ngIf="button2" class="font_regular btn_two" [ngStyle]="{'background-color': color}" (click)="btn2Action()" >{{button2}}</button>
+      <button *ngIf="button3" class="font_regular btn_three" [ngStyle]="{'background-color': color2}" (click)="btn3Action()" >{{button3}}</button>
+    </div>
+  </div>
+</div>
+

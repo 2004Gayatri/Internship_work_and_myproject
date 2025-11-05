@@ -1,0 +1,117 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// .container-fluid {
+//   padding-left: 17%;
+//   // padding-left: 5%;
+//   margin-top: 10px;
+//   margin-right: 13px;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 10px;
+// }
+.container-fluid {
+  margin-top: 10px;
+  margin-right: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: padding-left 0.3s ease; // Smooth transition
+
+  &.sidebar-wide {
+    padding-left: 17%;
+  }
+
+  &.sidebar-narrow {
+    padding-left: 6%;
+  }
+}
+.ua {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter_18pt-Regular' !important;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+  height: 34px;
+}
+.add-new-btn {
+  width: 9%;
+  font-family: 'Inter_18pt-Regular' !important;
+  height: 35px;
+  margin-left: 70%;
+  border-radius: 6px 6px 6px 6px;
+  background-color: #389fe7;
+  color: white;
+}
+.safe-unsafe-btns {
+  display: flex;
+  flex-direction: row;
+  width: 90%px;
+  height: 35px;
+  background: #389fe733;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter_18pt-Regular' !important;
+  font-size: 14px;
+  font-weight: 400;
+}
+.btn- {
+  height: 35px;
+  width: 33.2%;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+  color: black;
+  cursor: pointer;
+}
+.btn-2 {
+  border-right: 1px solid #389fe733;
+  border-left: 1px solid #389fe733;
+  border-radius: 0px;
+}
+.diffrent-size-buttons {
+  width: 78.2%;
+  height: 35px;
+  font-family: 'Inter_18pt-Regular' !important;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  text-align: center;
+}
+.small-sz-btn {
+  width: 113px;
+  height: 35px;
+  background-color: #389fe733;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+  cursor: pointer;
+}
+.big-sz-btn {
+  width: 155px;
+  height: 35px;
+  background-color: #389fe733;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  text-align: center;
+  padding: 5px; 
+  cursor: pointer;
+}
+// after activating buttons on
+.btn-, .small-sz-btn, .big-sz-btn {
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .btn-.active, .small-sz-btn.active, .big-sz-btn.active {
+    background-color: #389fe7; /* Active background color */
+    color: #fff; /* Active text color */
+  }
+  

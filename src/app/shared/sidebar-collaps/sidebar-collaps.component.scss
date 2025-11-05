@@ -1,0 +1,87 @@
+::-webkit-scrollbar {
+    width: 0; 
+    background: transparent;  
+  }
+  .thy_logo{
+    height: 60px;
+  }
+  .sidenav{
+    height: 100%;
+    width: 5%;
+    position: fixed;
+    z-index: 1;
+    background-color: white;
+    overflow: scroll;
+    box-shadow: #00000029 0px 3px 6px;
+  }
+  .sidenav a {
+    padding: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #000000;
+    display: block;
+    font-family:'Roboto-Medium';
+    padding-bottom: 44px;
+  }
+  .sidenav .active
+  {
+    background-color: #389FE7;
+    color: #FFFFFF;
+    cursor: pointer !important;
+  }
+  .sidenav a:hover {
+    background-color: #389FE733;
+    color: #000;
+    cursor: pointer !important;
+  }
+  .submenuhover a:hover {
+    background-color: #389FE733;
+    color: #000;
+    cursor: pointer !important;
+  }
+  .sidebaricon
+  {
+    vertical-align: middle;
+    margin-right: 20px;
+    width: 30px;
+    text-align: center;
+    // display: inline-block;
+    float: left;
+  }
+  .listview{
+    color: #fff;
+    padding: 22px;
+    font-size: 16px;
+    border-radius: 0;
+  }
+  .bg-submenu{
+    color: #ffffff;
+  }
+  .overflow{
+    overflow: scroll;
+    height: 100%;
+  }
+  .dis-inline{
+    display: inline;
+  }
+  .activeModule {
+    background-color: #389FE7;
+    color: #fff;
+    cursor: pointer !important;
+  }
+  .sidebaricon :hover {
+    background-color: #389FE733;
+    color: #FFFFFF;
+    cursor: pointer !important;
+  }
+  .opacity01{
+    opacity: 0.1;
+  }
+  .nowrap{
+    white-space: nowrap;
+  }
+  //change by gayatri
+.sidebaricon{
+  height: 20px;
+  width: 20px;
+}

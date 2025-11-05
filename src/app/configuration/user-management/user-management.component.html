@@ -1,0 +1,253 @@
+
+<div>
+  <app-grid-layout class="scroll displayNoneWebView" 
+      *ngIf="gridData && showListingPage" 
+      [gridData]="gridData"
+      [isChangeDetected]="isChangeDetected" 
+      [TableName]="'Task Management'" 
+      [paginationUrl]="paginationUrl"
+      [selectedRange]="selectedSizeToShowData" 
+      [searchText]="searchString"
+      (addRecordEmmiter)="addRecord()"
+      (detailsEmmiter)="showDatails($event)"
+      (importFileEmmiter)="navigateToImport()">
+  </app-grid-layout>
+</div>
+
+<div class="container modal fade container-fluid" [ngClass]="{ 'sidebar-wide': !isCollapsed, 'sidebar-narrow': isCollapsed }" [style.display]="showAddPopup? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="d-flex pt-10 pb-10 pr-10 pl-0">
+            <div class="fs-16">User Management | <span class="brightBlue">Add New</span></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="observationForm">
+            <ion-row>
+                <ion-col size-lg="8" size-md="8" size-sm="12" size-xs="12">
+                    <ion-row>
+                       <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                        <div class="formFieldLabel mb-5 mt-10">Employee Code<span class="red">&nbsp;*</span></div>
+                        <mat-form-field class="w-100 mat-height40 mat-input-style">
+                          <input matInput placeholder="Type here" formControlName="employeeCode">
+                          <mat-error *ngIf="observationForm.controls['employeeCode'].hasError('required')">Employee code is required</mat-error>
+                        </mat-form-field>
+                       </ion-col> 
+                       <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                        <ion-row>
+                            <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                                <div class="formFieldLabel mb-5 mt-10">First Name<span class="red">&nbsp;*</span></div>
+                                <mat-form-field class="w-100 mat-height40 mat-input-style">
+                                  <input matInput placeholder="Type here" formControlName="firstName">
+                                  <mat-error *ngIf="observationForm.controls['firstName'].hasError('required')">First Name is required</mat-error>
+                                </mat-form-field>
+                            </ion-col>
+                            <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                                <div class="formFieldLabel mb-5 mt-10">Last Name<span class="red">&nbsp;*</span></div>
+                                <mat-form-field class="w-100 mat-height40 mat-input-style">
+                                  <input matInput placeholder="Type here" formControlName="lastName">
+                                  <mat-error *ngIf="observationForm.controls['lastName'].hasError('required')">Last Name is required</mat-error>
+                                </mat-form-field>
+                            </ion-col>
+                        </ion-row>
+                       </ion-col>
+                        <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                            <div class="formFieldLabel mb-5 mt-10">Email Id<span class="red">&nbsp;*</span></div>
+                            <mat-form-field class="w-100 mat-height40 mat-input-style">
+                              <input matInput placeholder="Type here" formControlName="email">
+                              <mat-error *ngIf="observationForm.controls['email'].hasError('required')">Email Id is required</mat-error>
+                            </mat-form-field>
+                           </ion-col>
+
+                           <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                            <div class="formFieldLabel mb-5 mt-10">User Role<span class="red">&nbsp;*</span></div>
+                            <mat-form-field class="w-100 mat-height40 mat-input-style">
+                                <mat-select placeholder="Select" formControlName="userRole">
+                                  <mat-option value="demo">demo</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="observationForm.controls['userRole'].hasError('required')">User role is
+                                  required</mat-error>
+                              </mat-form-field>
+                           </ion-col>
+                        <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                            <div class="formFieldLabel mb-5 mt-10">Division<span class="red">&nbsp;*</span></div>
+                            <mat-form-field class="w-100 mat-height40 mat-input-style">
+                                <mat-select placeholder="Select" formControlName="division">
+                                  <mat-option value="demo">demo</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="observationForm.controls['division'].hasError('required')">Division is
+                                  required</mat-error>
+                              </mat-form-field>
+                           </ion-col>
+
+                           <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                            <div class="formFieldLabel mb-5 mt-10">Division Category<span class="red">&nbsp;*</span></div>
+                            <mat-form-field class="w-100 mat-height40 mat-input-style">
+                                <mat-select placeholder="Select" formControlName="divisionCategoray">
+                                  <mat-option value="demo">demo</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="observationForm.controls['divisionCategoray'].hasError('required')">Division Category is
+                                  required</mat-error>
+                              </mat-form-field>
+                           </ion-col>
+
+                        <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                            <div class="formFieldLabel mb-5 mt-10">Plant<span class="red">&nbsp;*</span></div>
+                            <mat-form-field class="w-100 mat-height40 mat-input-style">
+                                <mat-select placeholder="Select" formControlName="plant">
+                                  <mat-option value="demo">demo</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="observationForm.controls['plant'].hasError('required')">Plant is
+                                  required</mat-error>
+                              </mat-form-field>
+                           </ion-col>
+
+                           <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                            <div class="formFieldLabel mb-5 mt-10">Department<span class="red">&nbsp;*</span></div>
+                            <mat-form-field class="w-100 mat-height40 mat-input-style">
+                                <mat-select placeholder="Select" formControlName="department">
+                                  <mat-option value="demo">demo</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="observationForm.controls['department'].hasError('required')">Department is
+                                  required</mat-error>
+                              </mat-form-field>
+                           </ion-col>
+                           <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12" *ngIf="isEditModeactive">
+                            <div class="formFieldLabel mb-5 mt-10">Designation</div>
+                            <mat-form-field class="w-100 mat-height40 mat-input-style">
+                              <input matInput placeholder="Type here" formControlName="designation">
+                            </mat-form-field>
+                           </ion-col> 
+                           <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12" *ngIf="isEditModeactive">
+                            <div class="formFieldLabel mb-5 mt-10">Employee Exit Date</div>
+                            <mat-form-field class="w-100 mat-height40 mat-input-style">
+                              <input matInput placeholder="Type here" formControlName="employeeExitDate">
+                            </mat-form-field>
+                           </ion-col> 
+                           <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12" *ngIf="isEditModeactive">
+                            <div class="formFieldLabel mb-5 mt-10">Employee Joining Date</div>
+                            <mat-form-field class="w-100 mat-height40 mat-input-style">
+                              <input matInput placeholder="Type here" formControlName="employeeJoiningDate">
+                            </mat-form-field>
+                           </ion-col> 
+                           <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                            <div class="formFieldLabel mb-5 mt-10">User Category<span class="red">&nbsp;*</span></div>
+                            <mat-form-field class="w-100 mat-height40 mat-input-style">
+                                <mat-select placeholder="Select" formControlName="userCategory">
+                                  <mat-option value="demo">demo</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="observationForm.controls['userCategory'].hasError('required')">User Category is
+                                  required</mat-error>
+                              </mat-form-field>
+                           </ion-col>
+                        <ion-col size-lg="6" size-md="6" size-sm="12" size-xs="12">
+                            <div class="formFieldLabel mb-5 mt-10">Employee Status</div>
+                            <mat-form-field class="w-100 mat-height40 mat-input-style">
+                                <mat-select placeholder="Select" formControlName="employeeStatus">
+                                  <mat-option value="demo">demo</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                           </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size-lg="12" size-md="12" size-sm="12" size-xs="12">
+                    <div class="btn-group mt-20">
+                        <button type="button" *ngIf="!isEditModeactive" class="saveBtn" (click)="isSaveUsers()">Save</button>
+                        <button type="button" *ngIf="isEditModeactive" class="saveBtn" (click)="isSaveUsers()">Update</button>
+                        <button type="button" class="cancleBtn ml-20" (click)="isCancleAddUser()">Cancle</button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </form> 
+      </div>
+    </div>
+</div>
+<div class="container modal fade "[ngClass]="{ 'sidebar-wide': !isCollapsed, 'sidebar-narrow': isCollapsed }" [style.display]="showDetailsPopup? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="display-space-between pt-10 pb-10 pr-10 pl-0">
+          <div class="fs-16">User Management | <span class="brightBlue">Presnol Details</span></div>
+          <div class="verticle-center font_semibold">
+            <div class="verticle-center">Role : <span class="brightBlue">Employee</span> 
+              <span class="material-icons cp ml-10" (click)="isEditUserRole()">edit_square</span></div>
+            <div>
+              <button type="button" class="editBtn ml-20" (click)="onClickEdit()">Edit</button>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="cardBox mt-20">
+        <div class="cardBox-heading">
+           <div>Presnol Details</div>
+        </div>
+        <div class="cardBox-body">
+          <ion-row>
+            <ion-col size-lg="4" size-md="4" size-sm="12" size-xs="12">
+             <div class="showUserDetail">
+              <p class="mb-10">Employee Code</p>
+              <b>THZ001</b>
+             </div>
+            </ion-col>
+            <ion-col size-lg="4" size-md="4" size-sm="12" size-xs="12">
+              <div class="showUserDetail">
+               <p class="mb-10">First Name</p>
+               <b>Ajinkay</b>
+              </div>
+             </ion-col>
+             <ion-col size-lg="4" size-md="4" size-sm="12" size-xs="12">
+              <div class="showUserDetail">
+               <p class="mb-10">Last Name</p>
+               <b>Patil</b>
+              </div>
+             </ion-col>
+             <ion-col size-lg="4" size-md="4" size-sm="12" size-xs="12" class="mt-15">
+              <div class="showUserDetail">
+               <p class="mb-10">Email ID</p>
+               <b>demo&#64;gmail.com</b>
+              </div>
+             </ion-col>
+             <ion-col size-lg="4" size-md="4" size-sm="12" size-xs="12" class="mt-15">
+              <div class="showUserDetail">
+               <p class="mb-10">User</p>
+               <b>Ajinkay</b>
+              </div>
+             </ion-col>
+             <ion-col size-lg="4" size-md="4" size-sm="12" size-xs="12" class="mt-15">
+              <div class="showUserDetail">
+               <p class="mb-10">Employee Status</p>
+               <b>Active</b>
+              </div>
+             </ion-col>
+             <ion-col size-lg="4" size-md="4" size-sm="12" size-xs="12" class="mt-15">
+              <div class="showUserDetail">
+               <p class="mb-10">Division</p>
+               <b>Rubber</b>
+              </div>
+             </ion-col>
+             <ion-col size-lg="4" size-md="4" size-sm="12" size-xs="12" class="mt-15">
+              <div class="showUserDetail">
+               <p class="mb-10">division Categoray</p>
+               <b>Divison 1</b>
+              </div>
+             </ion-col>
+             <ion-col size-lg="4" size-md="4" size-sm="12" size-xs="12" class="mt-15">
+              <div class="showUserDetail">
+               <p class="mb-10">User Categoray</p>
+               <b>HOD</b>
+              </div>
+             </ion-col>
+             <ion-col size-lg="4" size-md="4" size-sm="12" size-xs="12" class="mt-15">
+              <div class="showUserDetail">
+               <p class="mb-10">Plant</p>
+               <b>Pune</b>
+              </div>
+             </ion-col>
+          </ion-row>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

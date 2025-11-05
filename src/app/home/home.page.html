@@ -1,0 +1,23 @@
+<!-- <ion-app>
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>
+  <app-sidebar-collaps></app-sidebar-collaps>
+    <ion-content>
+      <ion-router-outlet></ion-router-outlet>
+    </ion-content>
+</ion-app> -->
+<ion-app>
+  <app-header></app-header>
+  
+  <ng-container *ngIf="(sidebarservice.isCollapsed$ | async); else expandedSidebar">
+    <app-sidebar-collaps></app-sidebar-collaps>
+  </ng-container>
+
+  <ng-template #expandedSidebar>
+    <app-sidebar></app-sidebar>
+  </ng-template>
+
+  <ion-content>
+    <ion-router-outlet></ion-router-outlet>
+  </ion-content>
+</ion-app>

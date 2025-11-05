@@ -1,0 +1,194 @@
+<div class=" table-layout " [ngClass]="{ 'sidebar-wide': !isCollapsed, 'sidebar-narrow': isCollapsed }">
+  <ion-grid class="p-0 h-100">
+    <ion-row class="p-0 mb-10">
+      <ion-col class="p-0 display-space-between" size="12">
+        <div class="">
+          <img *ngIf="gridData.showBackBtn && gridData.showTitle" src="././assets/icon/backArrow.svg" class="cp mr-10"
+            (click)="backBtn()">
+          <ion-label class="font_bold fs-16 black_color" *ngIf="gridData?.showTitle">{{TableName}}
+            ({{gridData.totalCount || 0}})</ion-label>
+          <ion-label class="font_bold fs-16 black_color" *ngIf="gridData?.showBreadCrumbs"><span class="cp"
+              (click)="onClickConfig()">Configuration</span>&nbsp;/&nbsp;<span class="text_gray">{{TableName}}
+              ({{gridData.totalCount || 0}})</span></ion-label>
+        </div>
+        <div class="d-flex contai">
+          <button *ngIf="gridData?.showGraphBtn" type="button" class="exportToExcel_btn fs-14 font_medium ml-10"
+            (click)="garaphReport()"><img src="././assets/icon/graph.svg" class="icons cp"><span
+              class="mr-10 importText">Graph</span></button>
+          <button *ngIf="gridData?.showImportBtn" type="button" class="import_btn fs-14 font_medium ml-5"
+            (click)="importReport()"><img src="././assets/icon/import.svg" class="icons cp"><span
+              class="importText">Import</span></button>
+          <button *ngIf="gridData?.showExportBtn" type="button" class="exportToExcel_btn fs-14 font_medium ml-5"
+            (click)="exportReport()" title="Export to excel"><img src="././assets/icon/export.svg"
+              class="cp icons"><span class="importText">Export</span></button>
+          <button *ngIf="gridData?.showAddBtn" type="button" class="add_btn fs-14 ml-10 font_medium"
+            (click)="addRecord()">+ Add New</button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row *ngIf="gridData.taskTabsData.length!=0">
+      <ion-col size-sm="12" size-md="12" size-lg="12" size-xs="12" class="p-0">
+        <mat-tab-group [selectedIndex]="selectedTaskTabIndex" (selectedTabChange)="tabTaskChanged($event)" class="whiteBox demo-tab-group">
+          <mat-tab *ngFor="let item of gridData.taskTabsData" label="{{item.label}} ({{item.totalCount || 0}})"></mat-tab>
+        </mat-tab-group>
+      </ion-col>
+    </ion-row> -->
+
+    <ion-row *ngIf="gridData.tabsData.length!=0">
+      <ion-col size-sm="12" size-md="12" size-lg="12" size-xs="12" class="p-0 mt-5 mb-5">
+        <mat-tab-group [selectedIndex]="selectedTypeTabIndex" 
+          class="whiteBox demo-tab-group">
+          <mat-tab *ngFor="let item of gridData.tabsData" label="{{item.label}} ({{item.totalCount || 0}})"></mat-tab>
+        </mat-tab-group>
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-row *ngIf="gridData.tabsMainData.length!=0">
+      <ion-col size-sm="12" size-md="12" size-lg="12" size-xs="12" class="p-0 mt-5 mb-5">
+        <mat-tab-group class="whiteBox demo-tab-group" [selectedIndex]="selectedStatusTabIndex"
+          (selectedTabChange)="tabStatusChanged($event)">
+          <mat-tab *ngFor="let item of gridData.tabsMainData" label="{{item.label}} ({{item.totalCount || 0}})">
+          </mat-tab>
+        </mat-tab-group>
+      </ion-col>
+    </ion-row> -->
+
+    <ion-row *ngIf="gridData.subTabsData.length != 0">
+      <ion-col size-sm="12" size-md="12" size-lg="12" size-xs="12" class="p-0 mt-5 mb-5">
+        <div class="tabs-container">
+          <button class="nav-arrow left-arrow" (click)="scrollTabs('left')">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </button>
+          <div #tabsWrapper class="whiteBox sub-tab-group">
+            <div *ngFor="let item of gridData.subTabsData; let i = index" 
+                 class="tab-item" 
+                 [class.selected]="selectedTypeTabIndex === i"
+                 (click)="tabTypeChanged(item, i)">
+              {{ item.label }} ({{ item.totalCount || 0 }})
+            </div>
+          </div>
+          <button class="nav-arrow right-arrow" (click)="scrollTabs('right')">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+    
+    <div class="cardBox mt-20">
+      <div class="d-flex">
+        <img *ngIf="gridData.showBackBtn && gridData.showAuditLog" src="././assets/icon/forgetback.png" class="cp"
+          (click)="backBtn()">
+        <label *ngIf="gridData.showAuditLog" class="font_medium fs-16 ml-10 mt-5">{{TableName}}<span class="red-cl"
+            *ngIf="observationNumber!=null">&nbsp;>&nbsp;{{observationNumber}}</span></label>
+      </div>
+      <ion-row class="p-0 mb-10 verticle-center">
+        <ion-col *ngIf="gridData.showAuditLog" size-sm="3" size-md="3" size-lg="3" size-xs="3">
+          <ion-label class="font_bold">{{auditLogName}}</ion-label>
+        </ion-col>
+        <ion-col *ngIf="gridData.showRefreshFunctinallity" size-sm="3" size-md="3" size-lg="3" size-xs="3">
+          <ion-label class="fs-14 font_medium pr-10 black_color">Showing</ion-label>
+          <mat-form-field class="w-30 mat-height40 mat-input-style">
+            <mat-select placeholder="Select" [(ngModel)]="selectedRange" placeholder="Select"
+              (selectionChange)="onSelectCount($event)">
+              <mat-option [value]="25">25</mat-option>
+              <mat-option [value]="50">50</mat-option>
+              <mat-option [value]="75">75</mat-option>
+              <mat-option [value]="100">100</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <img class="refreshIcon ml-10 cp" src="././assets/icon/refresh.png" (click)="refreshData()">
+        </ion-col>
+        <ion-col size-sm="9" size-md="9" size-lg="9" size-xs="9" class="display-end">
+          <div *ngIf="mulipleSelect.length>0 || selectAllCheckbox" class="verticle-center">
+            <button class="simple-btn mr-10 cl-red fs-14 font_semibold" *ngIf="gridData.showDeleteBtn && isPerDeleteFlag"
+              (click)="deleteMultipleRecords()">Delete</button>
+          </div>
+          <mat-form-field *ngIf="gridData.showSearchBar" appearance="outline"
+            class="pr-20 mat-height40 mat-outline-style">
+            <input matInput type="search" placeholder="Search" [(ngModel)]="searchText" (input)="onSearch()">
+          </mat-form-field>
+          <ul class="dt_pagination pr-10">
+            <ion-row class="float-right pgintn">
+              <li (click)="previousPage()" [ngClass]="{'disableclass': currentPage==1}"><img
+                  src="././assets/icon/paginationprev.png"></li>
+              <li class="active fs-16 font_regular">{{currentPage}}</li>
+              <li (click)="nextPage()" [ngClass]="{'disableclass': currentPage== gridData.totalNoOfPages}"><img
+                  src="././assets/icon/paginationnext.png"></li>
+              <li class="fs-16 font_regular w65">of {{gridData.totalNoOfPages}}</li>
+            </ion-row>
+          </ul>
+          <div *ngIf="mulipleSelect.length>0 || selectAllCheckbox" class="verticle-center">
+            <button class="simple-btn cl-red fs-14 font_semibold verticle-center mr-15" *ngIf="gridData.showRestoreBtn"
+              (click)="restoreData()"><img class="mr-5" src="././assets/icon/restore.svg">Restore</button>
+          </div>
+          <div *ngIf="mulipleSelect.length>0 || selectAllCheckbox" class="verticle-center">
+            <button class="simple-btn cl-red fs-14 font_semibold verticle-center"
+              *ngIf="gridData.showPermantDeleteBtn && isPerDeleteFlag" (click)="deleteMultipleRecords()"><img class="mr-5"
+                src="././assets/icon/delete.svg">Delete Permanently</button>
+          </div>
+       
+        </ion-col>
+      </ion-row>
+      <div class="tableBox mt-10">
+        <ion-row class="p-0">
+          <table class="hover">
+            <thead class="bg-gray">
+              <tr>
+                <th *ngIf="gridData.showCheckBox" class="mat-checkbox-style">
+                  <mat-checkbox [(ngModel)]="selectAllCheckbox" [checked]="selectAllCheckbox==true" value=true
+                    (change)="selectALLRecords($event)"></mat-checkbox>
+                </th>
+                <th class="fs-14 font_bold cl-black" *ngFor="let item of gridData.columnInfo">
+                  <div class="verticle-center icon-style">{{item.label}}
+                    <div class="d-flex flex-column ml-10" *ngIf="item.label != 'Action'">
+                      <i class="material-icons cp" *ngIf="item.propertyName != 'sNo'"
+                        (click)="onSortAssending(item)">arrow_drop_up</i>
+                      <i class="material-icons cp" *ngIf="item.propertyName != 'sNo'"
+                        (click)="onSortDesending(item)">arrow_drop_down</i>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white" *ngIf="renderData.length !== 0">
+              <tr *ngFor="let item of renderData;let i=index">
+                <td *ngIf="gridData.showCheckBox" class="mat-checkbox-style">
+                  <mat-checkbox [(ngModel)]="item.checkboxCheck"
+                    (change)="selectSingleRecord($event,item,i)"></mat-checkbox>
+                </td>
+                <ng-container *ngFor="let innerItem of item">
+                  <td *ngIf="innerItem.key === 'name'" class="fs-14 font_regular brightBlue cp"
+                    (click)="showDatails(item)">
+                    <span>{{innerItem.value}}</span>
+                  </td>
+                  <td *ngIf="innerItem.key === 'uaExampt'" class="fs-14 font_regular cp">
+                  <mat-checkbox></mat-checkbox>
+                </td>
+                  <td
+                    *ngIf="innerItem.key !== 'action' && innerItem.key !== 'userStatus' && innerItem.key !== 'id' && innerItem.key !== 'name' && innerItem.key !== 'uaExampt'"
+                    class="fs-14 font_regular cl-black">{{innerItem.value}}
+                  </td>
+                  <td *ngIf="innerItem.key === 'checkBox'">
+                    <mat-checkbox [(ngModel)]="innerItem.value" disabled class="mat-checkbox-style"></mat-checkbox>
+                  </td>
+                  <td *ngIf="innerItem.key === 'action'">
+                    <img *ngIf="showSpecificButtons(innerItem,'edit') && isEditFlag" (click)="editDetail(item)"
+                      class="cp imgdelete" src="././assets/icon/edit.png">
+                    &nbsp;&nbsp;
+                    <img *ngIf="showSpecificButtons(innerItem,'delete') && isPerDeleteFlag" (click)="deleteDetail(item)"
+                      class="cp imgdelete" src="././assets/icon/delete.png">
+                  </td>
+                </ng-container>
+              </tr>
+            </tbody>
+          </table>
+        </ion-row>
+        <ion-row class="bg-white display-center" *ngIf="renderData.length === 0">
+          <div class="pt-50 pb-40 fs-16 font_medium cl-black">No Data Found</div>
+        </ion-row>
+      </div>
+    </div>
+    <!-- nested Tabs -->
+    
+  </ion-grid>
+</div>

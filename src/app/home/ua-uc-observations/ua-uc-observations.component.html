@@ -1,0 +1,62 @@
+ <div class="container-fluid" [ngClass]="{ 'sidebar-wide': !isCollapsed, 'sidebar-narrow': isCollapsed }">
+   <div class="ua">
+     <div> UA/UC Observations (50)
+       <button class="add-new-btn" (click)="refreshComponent('addNew')">Add New</button>
+     </div>
+   </div>
+   <div class="safe-unsafe-btns">
+     <div 
+       class="btn-" 
+       [ngClass]="{ 'active': selectedSafeUnsafe === 'unsafe-act' }"
+       (click)="onSafeUnsafeClick('unsafe-act')">
+       Unsafe Act (20)
+     </div>
+     <div 
+       class="btn- btn-2" 
+       [ngClass]="{ 'active': selectedSafeUnsafe === 'unsafe-conditions' }"
+       (click)="onSafeUnsafeClick('unsafe-conditions')">
+       Unsafe Conditions (15)
+     </div>
+     <div 
+       class="btn-" 
+       [ngClass]="{ 'active': selectedSafeUnsafe === 'safe-act' }"
+       (click)="onSafeUnsafeClick('safe-act')">
+       Safe Act (16)
+     </div>
+   </div>
+   
+   <div class="diffrent-size-buttons">
+     <div 
+       class="small-sz-btn" 
+       [ngClass]="{ 'active': selectedStatus === 'pending' }"
+       (click)="onStatusClick('pending')">
+       Pending (1)
+     </div>
+     <div 
+       class="small-sz-btn" 
+       [ngClass]="{ 'active': selectedStatus === 'rejected' }"
+       (click)="onStatusClick('rejected')">
+       Rejected (1)
+     </div>
+     <div 
+       class="big-sz-btn" 
+       [ngClass]="{ 'active': selectedStatus === 'further-action' }"
+       (click)="onStatusClick('further-action')">
+       Further Action Required (5)
+     </div>
+     <div 
+       class="big-sz-btn" 
+       [ngClass]="{ 'active': selectedStatus === 'verification' }"
+       (click)="onStatusClick('verification')">
+       Send for Verification (1)
+     </div>
+     <div 
+       class="big-sz-btn" 
+       [ngClass]="{ 'active': selectedStatus === 'verified-closed' }"
+       (click)="onStatusClick('verified-closed')">
+       Verified & Closed
+     </div>
+   </div>
+ </div>
+
+  

@@ -1,0 +1,42 @@
+.container {
+    --background: var(--ion-background-color, #F1F5F9);
+    --padding-start: 5px;
+    --padding-end: 5px;
+    --padding-top: 5px;
+    height: 100vh;
+}
+.bg-blue{
+    background-color: #0251A9;
+}
+.verticalTop{
+    vertical-align: top;
+}
+.searchInputBox{
+    border: 1px solid #ccc;
+    background: none;
+    width: 100%;
+    outline: none!important;
+    border-radius: 6px;
+    padding: 10px;
+    height: 40px;
+}
+.dateInput-box{
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #ffffff;
+    width: 100%;
+    outline: none!important;
+    min-height: 24px;
+  }
+  .cards{
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px #0000001A;
+    border: 1px solid #E1E1E1;
+    padding: 15px;
+    margin-bottom: 5px;
+  }
+  .bottom {
+    bottom: 70px;
+  }

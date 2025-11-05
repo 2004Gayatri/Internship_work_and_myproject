@@ -1,0 +1,31 @@
+<div class="container">
+  <div>Add Role</div>
+  <ion-row>
+    <ion-col size-lg="8" size-md="8" size-sm="12" size-xs="12">
+      <div class="formFieldLabel mb-5 mt-10">Role</div>
+      <mat-form-field class="w-70  mat-input-style mat-clas">
+        <mat-label>Role</mat-label>
+        <mat-select
+          [(ngModel)]="selectedRole"
+          placeholder="Select"
+          panelClass="custom-panel">
+          <mat-option *ngFor="let role of roles" [value]="role">
+            {{ role }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ion-col>  
+  </ion-row>
+  <ion-row>
+    <ion-col size-lg="12" size-md="12" size-sm="12" size-xs="12">
+        <div class="btn-group mt-20 btn-div">
+          <button *ngIf="someCondition" type="button" class="Btn" (click)="isSaveUsers()">Update</button>
+            <button type="button" class="cancleBtn ml-20" (click)="isCancleAddUser()">Cancle</button>
+        </div>
+    </ion-col>
+</ion-row>
+</div> 
+
+
+
+  

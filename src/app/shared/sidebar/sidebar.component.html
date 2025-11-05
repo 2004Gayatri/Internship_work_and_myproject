@@ -1,0 +1,28 @@
+<div class="sidenav">
+  <div class="overflow">
+    <div *ngFor="let item of sidebarModule">
+      <a class="listview" (click)="onModuleClick(item)" [ngClass]="{'active': router.url.includes(item.routerName), 'opacity01': item.routerName==''}">
+        <img src="{{item.moduleActiveIcon}}" *ngIf="router.url.includes(item.routerName)" class="sidebaricon">
+        <img src="{{item.moduleInactiveIcon}}" *ngIf="!router.url.includes(item.routerName)" class="sidebaricon">
+        <span class="fs-14 font_medium">{{item.ModuleName}}</span>
+      </a>
+    </div>
+    <!-- *ngIf="loggedInUserRole == 'EHS Admin' || loggedInUserRole == 'IT Admin'"  -->
+    <a class="listview nowrap"  (click)="onClickshowConfigMenu()">
+      <img *ngIf="!showConfigMenu" src="././assets/icon/config_rt_black.svg" class="sidebaricon">
+      <img *ngIf="showConfigMenu" src="././assets/icon/config_rt_black.svg" class="sidebaricon">
+      <span class="fs-14 text-black font_medium">Configurations&nbsp;&nbsp;
+        <img *ngIf="!showConfigMenu" src="././assets/icon/arrow_rt_black.png" class="dis-inline">
+        <img *ngIf="showConfigMenu" src="././assets/icon/arrow_down_black.png" class="dis-inline">
+      </span>
+    </a>
+    <div class="bg-submenu" *ngIf="showConfigMenu">
+      <a *ngFor="let item of configModule" class="listview" (click)="onModuleClick(item)" [ngClass]="{'active': router.url.includes(item.routerName)}">
+        <img src="{{item.moduleActiveIcon}}" *ngIf="router.url.includes(item.routerName)" class="sidebaricon">
+        <img src="{{item.moduleInactiveIcon}}" *ngIf="!router.url.includes(item.routerName)" class="sidebaricon">
+        <span class="fs-14 font_medium">{{item.ModuleName}}</span>
+      </a>
+    </div>
+    <div class="clear40"></div>
+  </div>
+</div>

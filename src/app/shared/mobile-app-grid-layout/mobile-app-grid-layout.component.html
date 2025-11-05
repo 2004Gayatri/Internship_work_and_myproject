@@ -1,0 +1,100 @@
+<ion-header class="bg-blue">
+  <ion-toolbar color="blue">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="12" size-md="12" size-lg="12" size-xs="12" class="p-0">
+          <img *ngIf="gridMobileData.showBackBtn" (click)="onBackBtnClick()" class="mr-10 verticalTop"
+            src="././assets/icon/mobileBackArrow.svg">
+          <ion-label *ngIf="gridMobileData.showTitle" class="white font_regular fs-16">{{TableName}}</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="container">
+  <ion-refresher slot="fixed">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid class="scroll">
+    <ion-row *ngIf="gridMobileData.showSearchBar">
+      <ion-col size-sm="12" size-md="12" size-lg="12" size-xs="12">
+        <mat-form-field appearance="outline" class="mat-height40 mat-outline-style w-100">
+          <input matInput type="search" placeholder="Search" [(ngModel)]="searchText" (input)="onSearch()">
+        </mat-form-field>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="gridMobileData.showDateRange">
+      <ion-col size-sm="6" size-md="6" size-lg="6" size-xs="6" class="my-class pb-0">
+        <ion-label class="font_regular fs-14 gray_color">Start Date</ion-label>
+      </ion-col>
+      <ion-col size-sm="6" size-md="6" size-lg="6" size-xs="6" class="my-class pb-0">
+        <ion-label class="font_regular fs-14 gray_color">End Date</ion-label>
+      </ion-col>
+      <ion-col size-sm="6" size-md="6" size-lg="6" size-xs="6" class="my-class">
+        <input type="date" class="fs-16 font_regular dateInput-box" placeholder="Start Date" [(ngModel)]="filterStartDate" (change)="filterByStartDate($event.target)">
+      </ion-col>
+      <ion-col size-sm="6" size-md="6" size-lg="6" size-xs="6" class="my-class">
+        <input type="date" class="fs-16 font_regular dateInput-box" placeholder="End Date" [(ngModel)]="filterEndDate" (change)="filterByEndDate($event.target)">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-sm="12" size-md="12" size-lg="12" size-xs="12" class="my-class">
+        <div class="font_regular fs-14 gray_color mb-5">Filter</div>
+        <mat-slide-toggle [(ngModel)]="isChecked" (change)="onChangeToggle($event)">
+          {{ isChecked ? 'All Tasks' : 'My Tasks' }}</mat-slide-toggle>
+        <div class="clear10"></div>
+        <mat-form-field appearance="outline" class="mat-height40 mat-outline-style w-100" *ngIf="router.url == '/home/uauc-reporting'">
+          <mat-select placeholder="Select" (selectionChange)="onClickType($event)" [(ngModel)]="selectedValue">
+            <mat-option value="Unsafe Act">Unsafe Act</mat-option>
+            <mat-option value="Unsafe Condition">Unsafe Condition</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="clear10"></div>
+        <mat-form-field appearance="outline" class="mat-height40 mat-outline-style w-100" *ngIf="router.url == '/home/uauc-reporting' || router.url != '/home/incident-reporting'">
+          <mat-select placeholder="Select" (selectionChange)="onClickStatus($event)" [(ngModel)]="selectedStatus"> 
+            <mat-option value="Open">Open</mat-option>
+            <mat-option value="Closed">Closed</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-height40 mat-outline-style w-100" *ngIf="router.url == '/home/incident-reporting'">
+          <mat-select placeholder="Select" (selectionChange)="onClickIncidentStatus($event)" [(ngModel)]="selectedIncidentStatus">
+            <mat-option value="Acceptance Review">Acceptance Review</mat-option>
+            <mat-option value="Rejected">Rejected</mat-option>
+            <mat-option value="Investigation Team Review">Investigation Team Review</mat-option>
+            <mat-option value="Work In Progress">Work In Progress</mat-option>
+            <mat-option value="Pending Closure Approval">Pending Closure Approval</mat-option>
+            <mat-option value="Closed">Closed</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-sm="12" size-md="12" size-lg="12" size-xs="12">
+        <ion-label class="font_regular fs-16">{{gridMobileData.totalCount}} Records</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="mb-60">
+      <ion-col size-sm="12" size-md="12" size-lg="12" size-xs="12">
+        <div class="cards" *ngFor="let item of renderData;" (click)="showDetails(item)">
+          <div *ngFor="let data of item" class="mb-5">
+            <div *ngIf="data.key != 'id'">
+              <ion-label class="font_regular gray_color">{{data.label}}: </ion-label>
+              <ion-label class="font_bold">{{data.value}}</ion-label>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+      <ion-infinite-scroll>
+        <ion-infinite-scroll-content loadingSpinner="bubbles" (ionInfinite)="onIonInfiniteScroll($event)"
+          *ngIf="currentPage < gridMobileData.totalNoOfPages"
+          loadingText="Loading more data..."></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-row>
+  </ion-grid>
+  <ion-fab *ngIf="gridMobileData.showAddBtn" vertical="bottom" horizontal="end" slot="fixed" class="bottom">
+    <ion-fab-button color="secondary" id="fabiocnbgcolor" (click)="onClickAddNewRecord()">
+      <ion-icon name="add" color="light"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

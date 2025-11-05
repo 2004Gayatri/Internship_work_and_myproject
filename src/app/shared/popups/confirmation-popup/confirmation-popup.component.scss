@@ -1,0 +1,28 @@
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: 18px !important;
+  }
+
+  .successIcon{
+    width: 60px;
+    height: 60px;
+  }
+
+  .btn_one{
+    border:  1px solid #389FE7;
+    color: #389FE7;
+    border-radius: 7px;
+    padding: 10px 20px;
+    background-color: #FFFFFF;
+    height: 40px;
+    font-family: 'Inter_18pt-Bold';
+  }
+
+  .btn_two{
+    background-color: #389FE7;
+    outline: none;
+    border-radius: 7px;
+    padding: 10px 20px;
+    color: #FFFFFF;
+    height: 40px;
+    font-family: 'Inter_18pt-Bold'; 
+  }

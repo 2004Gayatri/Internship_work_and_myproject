@@ -1,0 +1,7 @@
+{
+  "name": "iaEHS",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
